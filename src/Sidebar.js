@@ -15,9 +15,11 @@ import FileCopyIcon from '@material-ui/icons/FileCopy';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import AddIcon from '@material-ui/icons/Add';
+import { useStateValue } from './StateProvider';
 
 function Sidebar() {
   const [channels, setChannels] = useState([]);
+  const [{ user }] = useStateValue();
 
   useEffect(() => {
     db.collection('rooms').onSnapshot((snapshot) =>
@@ -37,7 +39,7 @@ function Sidebar() {
           <h2>Clever Programmer</h2>
           <h3>
             <FiberManualRecordIcon></FiberManualRecordIcon>
-            Ricardo Poyato
+            {user?.displayName}
           </h3>
         </div>
         <CreateIcon></CreateIcon>
